@@ -1,6 +1,8 @@
 set -ex
 
-sh /etc/init.d/xvfb start
+if [[ $(uname) != "Darwin" ]]; then
+  sh /etc/init.d/xvfb start
+fi
 
 if [[ ! -z $TOXENV ]]; then
   . jdk_switcher.sh && jdk_switcher use oraclejdk8
